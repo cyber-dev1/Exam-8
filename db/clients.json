@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "username": "ogabek_ak1s",
+        "email": "ogabekdn1@gmail.com",
+        "password": "ogabesdas!2",
+        "phone": "+998882779646",
+        "createdAt": "2025-04-05 18:16:25"
+    },
+    {
+        "id": 2,
+        "username": "shamsiddin",
+        "email": "shamsiddin@gmail.com",
+        "password": "ogabesd09",
+        "phone": "+998882770000",
+        "createdAt": "2025-04-05 18:22:18"
+    },
+    {
+        "id": 3,
+        "username": "shamsiddinssss",
+        "email": "shamsiddiwdasn@gmail.com",
+        "password": "ogabesdsdd09",
+        "phone": "+998885779641",
+        "createdAt": "2025-04-05 18:53:13"
+    }
+]
