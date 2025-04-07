@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import express from "express";
+import tovarsRouter from "./routes/tovarsRouter.js"
 import path from "path";
-import ActionRouter from "./routes/actionRouter.js"
 import clientRoutes from "./routes/clientRoutes.js";
 import employeRoutes from "./routes/employeRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
@@ -24,8 +24,8 @@ app.use(express.json());
 
 app.use("/api/clients", clientRoutes);
 app.use("/api/employes", employeRoutes);
-app.use("/api/actions", ActionRouter);
 app.use('/api/action', GetRot)
+app.use("/api/technics", tovarsRouter)
 
 app.post("/api/auth/login", login) ;
 

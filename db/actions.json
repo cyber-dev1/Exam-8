@@ -1,32 +1,12 @@
 [
     {
         "id": 1,
-        "clientId": 1,
-        "employeId": 1,
-        "techId": 3,
-        "date": "2025-04-05",
-        "totalPrice": 400000,
-        "status": 2,
-        "createdAt": "2025-04-05 12:00:00"
-    },
-    {
-        "id": 2,
-        "clientId": 2,
+        "clientId": 4,
         "employeId": 2,
-        "techId": 2,
-        "date": "2025 -04 -05",
-        "totalPrice": 12000000,
+        "techId": 1,
+        "date": "2025 -04 -07",
+        "totalPrice": 10000000,
         "status": 0,
-        "createdAt": "2025-04-05 18:31:34"
-    },
-    {
-        "id": 3,
-        "clientId": 3,
-        "employeId": 1,
-        "techId": 3,
-        "date": "2025 -04 -05",
-        "totalPrice": 9000000,
-        "status": 0,
-        "createdAt": "2025-04-05 18:53:13"
+        "createdAt": "2025-04-07 19:15:50"
     }
 ]

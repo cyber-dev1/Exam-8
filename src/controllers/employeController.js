@@ -7,7 +7,7 @@ let TOKEN_KEY = process.env.TOKEN_KEY;
 
 const checkToken = (token) => {
     if (!token) {
-        return { error: "Token kerak", status: 401 };
+        return { error: "Token majburiy", status: 401 };
     }
 
     let decoded;
@@ -15,7 +15,7 @@ const checkToken = (token) => {
         decoded = verifyToken(token, TOKEN_KEY);
         return { decoded };
     } catch (error) {
-        return { error: "Token yaroqsiz", status: 403 };
+        return { error: "Token yaroqsiz yoki xato", status: 403 };
     }
 };
 
@@ -29,14 +29,14 @@ const checkIfemployeExists = (employes, phone, email, excludeId = null) => {
 
 const employeSchema = Joi.object({
     username: Joi.string().min(3).max(30).required(),
-    phone: Joi.string().pattern(/^\+998(88|90|93|91|96|94|44|71|77|98)\d{7}$/).message("Phone number xato to'g'irla").required(),
+    phone: Joi.string().pattern(/^\+998(88|90|93|91|96|94|44|71|99|98|77)\d{7}$/).message("Phone number xato to'g'irla").required(),
     email: Joi.string().email().pattern(/@(gmail\.com|mail\.com)$/).message("Email xatoku to'g'irla !").required(),
     password: Joi.string().min(6).max(15).message("Password is invalid at 6 =< password <= 15").required()
 });
 
 const getemployes = (req, res) => {
     const employes = readJSON("employes.json");
-    res.json({ message: "Employes successfully keldi !!", status: 200, data: employes });
+    res.json({ message: "Employes muvaffaqiyatli keldi !!", status: 200, data: employes });
 };
 
 const createemploye = (req, res) => {

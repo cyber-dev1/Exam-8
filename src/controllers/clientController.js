@@ -4,7 +4,7 @@ import Joi from "joi";
 
 const clientSchema = Joi.object({
     username: Joi.string().min(3).max(30).required(),
-    phone: Joi.string().pattern(/^\+998(88|90|93|91|96|94|44|71|77|98)\d{7}$/).message("Phone number xato to'g'irla").required(),
+    phone: Joi.string().pattern(/^\+998(88|90|93|91|96|94|99|71|77|98|97)\d{7}$/).message("Phone number xato to'g'irla").required(),
     email: Joi.string().email().pattern(/@(gmail\.com|mail\.com)$/).message("Email xatoku to'g'irla !").required(),
     password : Joi.string().min(6).max(15).required()
 });

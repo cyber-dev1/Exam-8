@@ -22,5 +22,13 @@
         "password": "ogabesdsdd09",
         "phone": "+998885779641",
         "createdAt": "2025-04-05 18:53:13"
+    },
+    {
+        "id": 4,
+        "username": "polo",
+        "email": "polo@gmail.com",
+        "password": "polo007",
+        "phone": "+998915350000",
+        "createdAt": "2025-04-07 19:15:50"
     }
 ]

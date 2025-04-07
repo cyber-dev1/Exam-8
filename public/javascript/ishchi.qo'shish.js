@@ -4,6 +4,7 @@ let elIsmInput = document.querySelector(".ism");
 let elContactInput = document.querySelector(".contact");
 let elEmailInput = document.querySelector(".exampleInputEmail2");
 let elPasswordInput = document.querySelector(".password");
+let accToken = window.localStorage.getItem("token") ? window.localStorage.getItem("token") : window.location.href = "/"
 
 elForm.addEventListener("submit", async (evt) => {
     evt.preventDefault();
@@ -16,7 +17,8 @@ elForm.addEventListener("submit", async (evt) => {
         const req = await fetch("http://localhost:7000/api/employes/create", {
             method: "POST",
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
+                "token": accToken,
             },
             body: JSON.stringify({ username, email, phone, password })
         });
@@ -25,11 +27,14 @@ elForm.addEventListener("submit", async (evt) => {
             elPasswordInput.value = '';
             elContactInput.value = '';
             elIsmInput.value = '';
-            alert("TEKIN ishching muvaffaqqiyatli qo'shildi !"); 
+            let son = confirm("Ishching qo'shildi uni ko'rasanmi yes or no !!");
+            if(son){
+                window.location.href = "/royhat.ishchilar.html"
+            };
         }
         const res = await req.json();
-        console.log(res);
     } catch (error) {
+        alert(error);
         console.error(error)
     }
 });

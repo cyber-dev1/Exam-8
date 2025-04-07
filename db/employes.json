@@ -1,28 +1,27 @@
 [
     {
         "id": 1,
-        "username": "bin",
-        "email": "b@gmail.com",
-        "password": "bincoin",
+        "username": "Og'abek_Aka",
+        "email": "ogabek_aka@gmail.com",
         "phone": "+998885779646",
-        "createdAt": "2025-04-05 17:29:08",
-        "accCount": 1
+        "password": "ogabek_aka",
+        "createdAt": "2025-04-07 16:41:43"
     },
     {
         "id": 2,
-        "username": "binss",
-        "email": "bss1@gmail.com",
-        "password": "bd1incoin",
-        "phone": "+998885776246",
-        "createdAt": "2025-04-05 17:41:37",
-        "accCount": 2
+        "username": "Shamsiddin_Krash",
+        "email": "sha@gmail.com",
+        "phone": "+998885779346",
+        "password": "shamsiddin1",
+        "createdAt": "2025-04-07 16:43:05",
+        "accCount": 1
     },
     {
         "id": 3,
-        "username": "bins",
-        "email": "bs2@gmail.com",
-        "password": "bd1inc1in",
-        "phone": "+998885776146",
-        "createdAt": "2025-04-05 17:42:16"
+        "username": "Binali_0_Topar",
+        "email": "binal0topar@gmail.com",
+        "phone": "+998932862926",
+        "password": "Binal_0_Uchun",
+        "createdAt": "2025-04-07 16:45:51"
     }
 ]

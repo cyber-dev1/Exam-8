@@ -29,33 +29,25 @@
       </form>
     </nav>
     <section class="hero">
-      <div class="container">
-        <div class="hero-form w-75 mx-auto mt-5">
+      <div class="container-xxl">
+        <div class="hero-form w-100 mx-auto mt-5">
           <div class="hero-form-info mb-3 w-100 text-center">
             <h2>Ishchilar</h2>
           </div>
           <div class="hero-inner d-flex align-items-center justify-between">
-            <div class="card me-3" style="width: 18rem;">
-              <div class="card-body text-center">
-                <h5 class="card-title">Binali Binaliyev</h5>
-                <p class="card-text">2 ta buyurtma</p>
-                <!-- <a href="#" class="btn btn-primary disabled">Tayyorlanmoqda</a> -->
+
+            <template class="employeTemplate">
+              <div class="card mx-2" style="width: 300px;">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Ergashev Ja'farbek</h5>
+                  <span class="my-2 d-flex align-items-center justify-content-center gap-1">Buyurtmalar soni : <p
+                      class="card-text"> 3 ta buyurtma</p></span>
+                  <a href="#" class="btn btn-primary disabled">Band</a>
+                  <button class="butun btn btn-danger">&times;</button>
+                </div>
               </div>
-            </div>
-            <div class="card me-3" style="width: 18rem;">
-              <div class="card-body text-center">
-                <h5 class="card-title">Ergashev Ja'farbek</h5>
-                <p class="card-text">3 ta buyurtma</p>
-                <a href="#" class="btn btn-primary disabled">Band</a>
-              </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-              <div class="card-body text-center">
-                <h5 class="card-title">Og'abek Norkulov</h5>
-                <p class="card-text">1 ta buyurtma</p>
-                <!-- <a href="#" class="btn btn-primary disabled">Tayyorlanmoqda</a> -->
-              </div>
-            </div>
+            </template>
+
           </div>
         </div>
       </div>

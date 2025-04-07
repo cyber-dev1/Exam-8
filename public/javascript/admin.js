@@ -7,7 +7,7 @@ let nameL = localStorage.getItem("name") || "";
 if (!token) {
     window.location.href = "/";
 }
-names.textContent = nameL ? nameL.at(0) : "A";
+names.textContent = "A"
 
 function fs(){
     let page = window.location.pathname;
