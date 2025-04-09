@@ -1,19 +1,3 @@
 [
-    {
-        "id": 2,
-        "username": "Binali",
-        "email": "binaliyev@gmail.com",
-        "phone": "+998885779654",
-        "password": "binaoi",
-        "createdAt": "2025-04-09 13:47:42"
-    },
-    {
-        "id": 3,
-        "username": "shamsiddin",
-        "email": "sha@gmail.com",
-        "phone": "+998997765646",
-        "password": "shamdin",
-        "createdAt": "2025-04-09 13:51:09",
-        "accCount": 1
-    }
+   
 ]

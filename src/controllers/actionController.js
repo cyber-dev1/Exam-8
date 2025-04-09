@@ -93,17 +93,29 @@ const createaction = (req, res) => {
 
   const { username, phone, email, password, techId, employeId } = req.body;
 
-  const lastClient = clients[clients.length - 1];
-  const newClientId = lastClient ? lastClient.id + 1 : 1;
-  const newUser = { id: newClientId, username, email, password, phone, createdAt: formatDate(new Date()) };
-  clients.push(newUser);
-  writeJSON("clients.json", clients);
-  const clientId = newClientId;
+  // Clientni tekshiramiz, agar mavjud bo‘lsa, accCount ni oshiramiz
+  let client = clients.find(c => c.email === email && c.password === password);
+  if (!client) {
+    // Agar client mavjud bo‘lmasa, yangi client qo‘shamiz
+    const lastClient = clients[clients.length - 1];
+    const newClientId = lastClient ? lastClient.id + 1 : 1;
+    client = { id: newClientId, username, email, password, phone, createdAt: formatDate(new Date()), accCount: 0 };
+    clients.push(client);
+    writeJSON("clients.json", clients);
+  }
 
+  // Clientning accCount qiymatini tekshiramiz
+  const clientActions = actions.filter(action => action.clientId === client.id);
+  if (clientActions.length >= 3) {
+    return res.status(403).json({ message: "Client maksimal action miqdoriga yetgan (3 ta)", status: 403 });
+  }
+
+  // Employe tekshiruvi
   const employe = employes.find(emp => emp.username === employeId);
   if (!employe) return res.status(404).json({ message: "Employe topilmadi", status: 404 });
   if ((employe.accCount || 0) >= 3) return res.status(403).json({ message: "Employe maksimal ish miqdoriga yetgan", status: 403 });
 
+  // Action yaratamiz
   const lastAction = actions[actions.length - 1];
   const newActionId = lastAction ? lastAction.id + 1 : 1;
   const findPrice = prices.find((p) => p.techId === techId);
@@ -111,7 +123,7 @@ const createaction = (req, res) => {
 
   const newAction = {
     id: newActionId,
-    clientId,
+    clientId: client.id,
     employeId: employe.id,
     techId,
     date: actionDate(new Date()),
@@ -127,30 +139,23 @@ const createaction = (req, res) => {
   writeJSON("actions.json", actions);
   writeJSON("employes.json", employes);
 
+  // Clientning accCount ni yangilash
+  client.accCount = clientActions.length + 1; // 1 ta yangi action qo'shilganligi sababli
+
+  writeJSON("clients.json", clients);
+
   res.status(201).json({ message: "Action muvaffaqiyatli qo‘shildi", status: 201, data: newAction });
 };
 
 const updateActionStatus = (req, res) => {
   const { status } = req.body;
   const actionId = parseInt(req.params.id);
-  const token = req.headers.token;
-  if (!token) return res.status(401).json({ message: "Token kerak", status: 401 });
-
-  let decoded;
-  try {
-    decoded = verifyToken(token, JWT_SECRET);
-  } catch (error) {
-    return res.status(403).json({ message: "Token yaroqsiz", status: 403 });
-  }
 
   const actions = readJSON("actions.json");
   const actionIndex = actions.findIndex((action) => action.id === actionId);
   if (actionIndex === -1) return res.status(404).json({ message: "Action not found", status: 404 });
 
   const action = actions[actionIndex];
-  if (decoded.role !== "admin" && decoded.id !== action.employeId) {
-    return res.status(403).json({ message: "Bu employe emas yoki admin emas, ruxsat yo'q", status: 403 });
-  }
 
   const currentStatus = action.status;
   if (status < currentStatus) {
@@ -186,7 +191,7 @@ const deleteAction = (req, res) => {
   if (actionIndex === -1) return res.status(404).json({ message: "Action not found", status: 404 });
 
   const action = actions[actionIndex];
-  if (action.status === 2) {
+  if (action.status === 1) {
     const clientIndex = clients.findIndex((client) => client.id === action.clientId);
     if (clientIndex !== -1) {
       clients.splice(clientIndex, 1);

@@ -11,11 +11,11 @@ const buyurtmaTemp = document.querySelector('.buyurtmaTemp');
 const elActForm = document.querySelector(".js-act-form");
 const elClientNameInp = document.querySelector(".js-client-name-inp");
 const elClientPassInp = document.querySelector(".js-client-pass-inp");
-const elPriceInp = elActForm.querySelector(".js-price-inp");
-const elClientTellnumberInp = elActForm.querySelector(".js-client-tellnumber-inp");
-const elClientEmailInp = elActForm.querySelector(".js-client-email-inp");
-const elTechSel = elActForm.querySelector(".js-tech-sel");
-const elEmployeSel = elActForm.querySelector(".js-employe-sel");
+const elPriceInp = document.querySelector(".js-price-inp");
+const elClientTellnumberInp = document.querySelector(".js-client-tellnumber-inp");
+const elClientEmailInp = document.querySelector(".js-client-email-inp");
+const elTechSel = document.querySelector(".js-tech-sel");
+const elEmployeSel = document.querySelector(".js-employe-sel");
 
 async function handleDel(id) {
     const req = await fetch(`http://localhost:7000/api/action/delete/${id}`, {
@@ -26,11 +26,15 @@ async function handleDel(id) {
         }
     });
     const res = await req.json();
-    console.log(res);
+    if (req.ok) {
+        alert("Action clientga taqdim qilindi !");
+        window.location.reload();
+    }
 }
 
 async function getAndRenderActions() {
     const boxRender = document.getElementById('boxRender');
+    if (!boxRender || !buyurtmaTemp) return;
     try {
         const res = await fetch("http://localhost:7000/api/action/client", {
             method: "GET",
@@ -40,6 +44,7 @@ async function getAndRenderActions() {
         if (res.ok) {
             const json = await res.json();
             const actions = json.data || [];
+            // console.log(actions);
             const docFragment = document.createDocumentFragment();
             const template = buyurtmaTemp.content;
 
@@ -49,13 +54,13 @@ async function getAndRenderActions() {
                 const date = clone.querySelector(".card-text");
                 const statusBtn = clone.querySelector(".btn");
 
-                if (title) title.textContent = action.techName || "Noma'lum";
+                if (title) title.textContent = action.techId || "Noma'lum";
                 if (date) date.textContent = action.date || "Sana yo'q";
 
                 if (action.status == 0) {
                     statusBtn.textContent = "Tayyorlanmoqda . . .";
-                } else if (action.status == 2) {
-                    statusBtn.textContent = "Olib ketish !";
+                } else if (action.status == 1) {
+                    statusBtn.textContent = "Klientga yuborish  !";
                     statusBtn.dataset.id = action.id;
                     statusBtn.classList.remove("disabled");
                     statusBtn.addEventListener("click", (evt) => {
@@ -110,7 +115,7 @@ function renderEmployesToSelect(data) {
 
     data.forEach(emp => {
         const option = document.createElement("option");
-        option.value = emp.username; // faqat value ishlatiladi
+        option.value = emp.username;
         option.textContent = emp.username || "Noma'lum";
         employeSelect.appendChild(option);
     });
@@ -197,6 +202,13 @@ if (page === "/royhat.ishchilar.html") {
                 const name = clone.querySelector('.card-title');
                 const accCount = clone.querySelector('.card-text');
                 const deleteBtn = clone.querySelector(".butun");
+                const TT = clone.querySelector('.TT');
+                if (item.accCount == 3) {
+                    TT.textContent = "Band";
+                } else {
+                    TT.classList.remove("disabled")
+                    TT.textContent = "Bo'sh"
+                }
 
                 if (name) name.textContent = item.username || "Noma'lum";
                 if (accCount) accCount.textContent = item.accCount || 0;
@@ -207,74 +219,46 @@ if (page === "/royhat.ishchilar.html") {
 
             renderBody.appendChild(docFragment);
         }
-
-        async function handleCheckDel(dataId) {
-            let yes = confirm("EMPLOYE muvaffaqiyatli o'chirildi. /ishchiQoshish.html ga qaytasizmi?");
-            const targetId = dataId;
-            if (!targetId) return;
-
-            try {
-                const req = await fetch(`http://localhost:7000/api/employes/delete/${targetId}`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-type": "application/json",
-                        token: acToken,
-                    },
-                });
-
-                if (req.ok) {
-                    await getEmployes();
-                    if (yes) window.location.href = "/ishchi.qoshish.html";
-                } else {
-                    console.error("O'chirish xatoligi:", await req.text());
-                }
-            } catch (err) {
-                alert(err);
-                console.error("DELETE xatolik:", err);
-            }
-        }
-
-        renderBody.addEventListener("click", async (evt) => {
-            if (evt.target.matches(".butun")) {
-                handleCheckDel(evt.target.dataset.id);
-            }
-        });
     }
 }
 
-elActForm.addEventListener("submit", async (evt) => {
-    evt.preventDefault();
-    
-    const data = {
-        username: elClientNameInp.value.trim(),
-        phone: `+${elClientTellnumberInp.value.trim()}`,
-        email: elClientEmailInp.value.trim(),
-        password: elClientPassInp.value.trim(),
-        techId: elTechSel.value,
-        employeId: elEmployeSel.value, // faqat value (string) yuboriladi
-    };
+if (elActForm) {
+    elActForm.addEventListener("submit", async (evt) => {
+        evt.preventDefault();
 
-    const req = await fetch("http://localhost:7000/api/action/create", {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json",
-            "token": window.localStorage.getItem("token")
-        },
-        body: JSON.stringify(data)
+        const data = {
+            username: elClientNameInp?.value.trim() || "",
+            phone: `+${elClientTellnumberInp?.value.trim()}` || "",
+            email: elClientEmailInp?.value.trim() || "",
+            password: elClientPassInp?.value.trim() || "",
+            techId: elTechSel?.value || "",
+            employeId: elEmployeSel?.value || "",
+        };
+
+        const req = await fetch("http://localhost:7000/api/action/create", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "token": acToken
+            },
+            body: JSON.stringify(data)
+        });
+
+        const res = await req.json();
+        console.log(res);
+
+        if (req.status == 201 && req.ok) {
+            alert("Action muvaffaqiyatli qo'shildi ! uni ko'rasanmi ?");
+            window.location.href = "/royhat.buyurtmalar.html";
+            elClientNameInp.value = "";
+            elClientTellnumberInp.value = "";
+            elClientEmailInp.value = "";
+            elClientPassInp.value = "";
+            elTechSel.value = "";
+            elEmployeSel.value = "";
+        }
     });
-
-    const res = await req.json();
-    console.log(res);
-
-    if (req.status == 201 && req.ok) {
-        elClientNameInp.value = "";
-        elClientTellnumberInp.value = "";
-        elClientEmailInp.value = "";
-        elClientPassInp.value = "";
-        elTechSel.value = "";
-        elEmployeSel.value = "";
-    }
-});
+}
 
 getEmployes();
 getPrices();

@@ -34,11 +34,11 @@ function handleRenders(data) {
     let frag = document.createDocumentFragment();
     data.forEach(item => {
         let clone = cliTemp.cloneNode(true);
-        clone.querySelector(".card-title").textContent = item.techName;
+        clone.querySelector(".card-title").textContent = item.techId;
         clone.querySelector('.card-text').textContent = item.date;
         if (item.status == 1){
             clone.querySelector('.stat').textContent = "Olib ketish !";
-
+            clone.querySelector('.stat').classList.remove("disabled") ;
         }else if(item.status == 0){
             clone.querySelector('.stat').textContent = "Tayyorlanmoqda . . .";
         }

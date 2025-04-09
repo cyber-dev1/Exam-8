@@ -1,5 +1,5 @@
 import { readJSON, writeJSON } from "../utils/fileUtils.js";
-import {formatDate} from "../utils/formatDate.js";
+import { formatDate } from "../utils/formatDate.js";
 import { verifyToken } from "../utils/tokenUtils.js";
 import Joi from "joi";
 
@@ -28,15 +28,32 @@ const checkIfemployeExists = (employes, phone, email, excludeId = null) => {
 
 
 const employeSchema = Joi.object({
-    username: Joi.string().min(3).max(30).required(),
-    phone: Joi.string().pattern(/^\+998(88|90|93|91|96|94|44|71|99|98|77)\d{7}$/).message("Phone number xato to'g'irla").required(),
-    email: Joi.string().email().pattern(/@(gmail\.com|mail\.com)$/).message("Email xatoku to'g'irla !").required(),
-    password: Joi.string().min(6).max(15).message("Password is invalid at 6 =< password <= 15").required()
+    username: Joi.string().min(3).max(30),
+    phone: Joi.string().pattern(/^\+998(88|90|93|91|96|94|44|71|99|98|77)\d{7}$/).message("Phone number xato to'g'irla"),
+    email: Joi.string().email().pattern(/@(gmail\.com|mail\.com)$/).message("Email xatoku to'g'irla !"),
+    password: Joi.string().min(6).max(15).message("Password is invalid at 6 =< password <= 15")
 });
 
 const getemployes = (req, res) => {
     const employes = readJSON("employes.json");
     res.json({ message: "Employes muvaffaqiyatli keldi !!", status: 200, data: employes });
+};
+
+
+const getemployeById = (req, res) => {
+        let employes = readJSON("employes.json");
+        const employeId = parseInt(req.params.id);
+        const employe = employes.find(c => c.id === employeId);
+
+        if (!employe) {
+            return res.status(404).json({ message: "employe not found", status: 404 });
+        }
+
+        res.status(200).json({
+            message: "employe successfully keldi !!",
+            status: 200,
+            data: employe,
+        });
 };
 
 const createemploye = (req, res) => {
@@ -70,28 +87,10 @@ const createemploye = (req, res) => {
 };
 
 const editemploye = (req, res) => {
-    const { error } = employeSchema.validate(req.body);
-    if (error) return res.status(400).json({ message: error.details[0].message, status: 400 });
-
-    const token = req.headers.token;
-
-    const { error: tokenError, decoded } = checkToken(token);
-    if (tokenError) {
-        return res.status(tokenError.status || 400).json({ message: tokenError, status: tokenError.status || 400 });
-    }
 
     const employes = readJSON("employes.json");
     const index = employes.findIndex(employe => employe.id == req.params.id);
     if (index === -1) return res.status(404).json({ message: "Employe not found", status: 404 });
-
-    if (decoded.id !== req.params.id) {
-        return res.status(403).json({ message: "Siz bu employe emassiz, ruxsat yo'q", status: 403 });
-    }
-
-    const existingemploye = checkIfemployeExists(employes, req.body.phone, req.body.email, req.params.id);
-    if (existingemploye) {
-        return res.status(409).json({ message: "Employe already exists", status: 409 });
-    }
 
     employes[index] = { ...employes[index], ...req.body, updatedAt: formatDate(new Date()) };
     writeJSON("employes.json", employes);
@@ -120,6 +119,6 @@ const deleteemploye = (req, res) => {
     res.json({ message: "Employe muvaffaqiyatli o'chirildi", status: 200 });
 };
 
-export { getemployes, createemploye, editemploye, deleteemploye };
+export { getemployes, createemploye, editemploye, deleteemploye, getemployeById };
 
 
