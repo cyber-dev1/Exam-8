@@ -1,90 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <header class="bg-dark py-3 text-center w-100 text-light">
-        <div class="container position-relative">
-            <h1>Service center</h1>
-            <a class="position-absolute top-0 end-0 text-decoration-none" href="./admin.akkaunt.html">
-              <span class="bg-white text-dark px-3 py-2 rounded" style="font-weight: 600;" id="buyurtma">O</span>
-            </a>
-          </div>
-    </header>
-    <main>
-        <nav class="navbar bg-body-tertiary">
-            <form class="container-fluid justify-content-start">
-              <a class="btn btn-outline-success me-2 " href="./admin.html">Home</a>
-              <a class="btn btn-outline-primary me-2" href="./ishchi.qoshish.html">Ishchi qo'shish</a>
-              <a class="btn btn-outline-primary me-2 active" href="./buyurtma.html">Buyurtma qo'shish</a>
-              <a class="btn btn-outline-primary me-2" href="./royhat.ishchilar.html">Ishchilar ro'yhati</a>
-              <a class="btn btn-outline-primary" href="./royhat.buyurtmalar.html">Buyurtmalar ro'yhati</a>
-            </form>
-          </nav>
-      <section class="hero">
-        <div class="container">
-            <div class="hero-form w-50 mx-auto mt-2">
-                <div class="hero-form-info w-100 text-center">
-                    <h2>Buyurtma qo'shish</h2>
-                </div>
-                <form class="w-100">
-                    <div class="mb-3">
-                      <label class="form-label">Buyurtmachi ismi</label>
-                      <input type="text" placeholder="Falonchi falonchiyev" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Buyurtmachi raqami</label>
-                        <input type="number" placeholder="998996785432" class="form-control">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Foydalanuvchi email manzili</label>
-                        <input type="email" placeholder="falonchi@gmail.com" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                      </div>
-                    <div class="mb-3">
-                        <label for="tech">Texnika</label>
-                        <select class="form-select" name="" id="" form="tech">
-                            <option value="" hidden disabled selected>Texnikani tanlang</option>
-                            <option value="1">Holodilnik</option>
-                            <option value="2">Televizor</option>
-                            <option value="3">Kir moshina</option>
-                            <option value="4">Kompyuter</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="employee">Ishchi biriktirish</label>
-                        <select class="form-select" name="employee_id" id="employee" form="tech">
-                            <option value="" hidden disabled selected>Ishchi tanlang</option>
-                            <option value="1">Binali</option>
-                            <option value="2">Shamsiddin</option>
-                            <option value="3">Iborhim</option>
-                            <option value="4">Ja'farbek</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Narxi</label>
-                        <input type="number" disabled placeholder="0" class="form-control" id="price">
-                      </div>
-                    <button type="submit" class="btn btn-primary">Buyurtma qo'shish</button>
-                  </form>
-            </div>
-        </div>
-      </section>
-    </main>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <script src="/javascript/global.bore.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+</head>
+
+<body>
+  <header class="bg-dark py-3 text-center w-100 text-light">
+    <div class="container position-relative">
+      <h1>Service center</h1>
+      <a class="position-absolute top-0 end-0 text-decoration-none" href="./admin.akkaunt.html">
+        <span class="bg-white text-dark px-3 py-2 rounded" style="font-weight: 600;" id="buyurtma">O</span>
+      </a>
+    </div>
+  </header>
+  <main>
+    <nav class="navbar bg-body-tertiary">
+      <form class="container-fluid justify-content-start">
+        <a class="btn btn-outline-success me-2 " href="./admin.html">Home</a>
+        <a class="btn btn-outline-primary me-2" href="./ishchi.qoshish.html">Ishchi qo'shish</a>
+        <a class="btn btn-outline-primary me-2 active" href="./buyurtma.html">Buyurtma qo'shish</a>
+        <a class="btn btn-outline-primary me-2" href="./royhat.ishchilar.html">Ishchilar ro'yhati</a>
+        <a class="btn btn-outline-primary" href="./royhat.buyurtmalar.html">Buyurtmalar ro'yhati</a>
+      </form>
+    </nav>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-form w-50 mx-auto mt-2">
+          <div class="hero-form-info w-100 text-center">
+            <h2>Buyurtma qo'shish</h2>
+          </div>
+          <form class="w-100 js-act-form">
+            <div class="mb-3">
+              <label class="form-label">Buyurtmachi ismi</label>
+              <input type="text" placeholder="Falonchi falonchiyev" class="form-control js-client-name-inp">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Buyurtmachi raqami</label>
+              <input type="number" placeholder="998996785432" class="form-control js-client-tellnumber-inp">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Foydalanuvchi email manzili</label>
+              <input type="email" placeholder="falonchi@gmail.com" class="form-control js-client-email-inp"
+                id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Foydalanuvchi passwordi</label>
+              <input type="text" placeholder="Password" class="form-control js-client-pass-inp"
+                 aria-describedby="password"/>
+            </div>
+            <div class="mb-3">
+              <label for="tech">Texnika</label>
+              <select class="form-select js-tech-sel" name="" id="sel" form="tech">
+                <option value="" hidden disabled selected>Texnikani tanlang</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="employee">Ishchi biriktirish</label>
+              <select class="form-select js-employe-sel" name="employee_id" id="employe" form="tech">
+                <option value="" hidden disabled selected>Ishchi tanlang</option>
+
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Narxi</label>
+              <input type="number" disabled placeholder="0" class="form-control js-price-inp" id="price">
+            </div>
+            <button type="submit" class="btn btn-primary">Buyurtma qo'shish</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="/javascript/global.js"></script>
+</body>
+
 </html>

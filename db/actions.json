@@ -8,5 +8,15 @@
         "totalPrice": 10000000,
         "status": 0,
         "createdAt": "2025-04-07 19:15:50"
+    },
+    {
+        "id": 2,
+        "clientId": 13,
+        "employeId": 3,
+        "techId": "Xolodilnik",
+        "date": "2025 -04 -09",
+        "totalPrice": 0,
+        "status": 0,
+        "createdAt": "2025-04-09 14:48:52"
     }
 ]

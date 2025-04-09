@@ -20,38 +20,31 @@ function bs() {
 };
 bs();
 
-// Formani yuborish
 adminForm.addEventListener("submit", async (evt) => {
     evt.preventDefault();
 
-    // Yuboriladigan o'zgartirilgan ma'lumotlarni saqlash
     const updatedData = {};
 
-    // Agar adminName o'zgartirilgan bo'lsa
     if (adminName.value !== adminName.defaultValue) {
         updatedData.adminname = adminName.value;
     }
 
-    // Agar adminEmail o'zgartirilgan bo'lsa
     if (adminEmail.value !== adminEmail.defaultValue) {
         updatedData.email = adminEmail.value;
     }
 
-    // Agar adminPassword o'zgartirilgan bo'lsa
     if (adminPassword.value !== adminPassword.defaultValue) {
         updatedData.password = adminPassword.value;
     }
 
-    // Agar hech qanday o'zgarish bo'lmasa, xabar berish
     if (Object.keys(updatedData).length === 0) {
         alert("Hech qanday ma'lumot o'zgartirilmagan!");
         return;
     }
 
-    // Yuboriladigan o'zgartirishlar mavjud bo'lsa
     try {
         const req = await fetch("http://localhost:7000/api/admin/edit/1", {
-            method: "PATCH",  // PATCH metodiga o'zgartirdik
+            method: "PATCH", 
             headers: {
                 "Content-type": "application/json",
                 "token": AdToken,
@@ -71,19 +64,16 @@ adminForm.addEventListener("submit", async (evt) => {
     }
 });
 
-// Admin ma'lumotlarini render qilish
 function renderAdmin(admin) {
     adminName.value = admin[0].adminname;
     adminEmail.value = admin[0].email;
     adminPassword.value = admin[0].password;
 
-    // Default qiymatlar
     adminName.defaultValue = admin[0].adminname;
     adminEmail.defaultValue = admin[0].email;
     adminPassword.defaultValue = admin[0].password;
 }
 
-// Admin ma'lumotlarini olish
 async function getAdmin() {
     const req = await fetch("http://localhost:7000/api/admin");
     if (req.ok) {
@@ -92,5 +82,4 @@ async function getAdmin() {
     }
 };
 
-// Sayt yuklanganda admin ma'lumotlarini olish
 getAdmin();

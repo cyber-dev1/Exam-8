@@ -7,11 +7,10 @@ const actionSchema = Joi.object({
     password: Joi.string()
         .min(6)
         .max(30)
-        .pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]+$/)
-        .message("Parol kamida 6 ta belgidan iborat bo‘lishi va harf hamda raqam bo‘lishi kerak")
+        .message("Parol kamida 6 ta belgidan iborat bo‘lishi  kerak")
         .required(),
-    techId: Joi.number().required(),
-    employeId: Joi.number().required(),
+    techId: Joi.string().required(),
+    employeId: Joi.string().required(),
 });
 
 export { actionSchema };

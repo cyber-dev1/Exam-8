@@ -1,27 +1,19 @@
 [
     {
-        "id": 1,
-        "username": "Og'abek_Aka",
-        "email": "ogabek_aka@gmail.com",
-        "phone": "+998885779646",
-        "password": "ogabek_aka",
-        "createdAt": "2025-04-07 16:41:43"
-    },
-    {
         "id": 2,
-        "username": "Shamsiddin_Krash",
-        "email": "sha@gmail.com",
-        "phone": "+998885779346",
-        "password": "shamsiddin1",
-        "createdAt": "2025-04-07 16:43:05",
-        "accCount": 1
+        "username": "Binali",
+        "email": "binaliyev@gmail.com",
+        "phone": "+998885779654",
+        "password": "binaoi",
+        "createdAt": "2025-04-09 13:47:42"
     },
     {
         "id": 3,
-        "username": "Binali_0_Topar",
-        "email": "binal0topar@gmail.com",
-        "phone": "+998932862926",
-        "password": "Binal_0_Uchun",
-        "createdAt": "2025-04-07 16:45:51"
+        "username": "shamsiddin",
+        "email": "sha@gmail.com",
+        "phone": "+998997765646",
+        "password": "shamdin",
+        "createdAt": "2025-04-09 13:51:09",
+        "accCount": 1
     }
 ]

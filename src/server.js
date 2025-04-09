@@ -6,6 +6,7 @@ import clientRoutes from "./routes/clientRoutes.js";
 import employeRoutes from "./routes/employeRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
 import errorHandler from "./middlewares/errorHandler.js";
+import getPrice from "./routes/pricesRouter.js"
 import GetRot from "./routes/actionRouter.js"
 import {config} from "dotenv"
 import {login} from "./controllers/loginController.js"
@@ -26,12 +27,11 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/employes", employeRoutes);
 app.use('/api/action', GetRot)
 app.use("/api/technics", tovarsRouter)
+app.use("/api/price", getPrice)
 
 app.post("/api/auth/login", login) ;
 
 app.use("/api/admin", adminRouter);
-
-
 
 const rootDir = process.cwd();
 

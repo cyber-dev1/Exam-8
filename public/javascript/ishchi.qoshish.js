@@ -6,6 +6,7 @@ let elEmailInput = document.querySelector(".exampleInputEmail2");
 let elPasswordInput = document.querySelector(".password");
 let accToken = window.localStorage.getItem("token") ? window.localStorage.getItem("token") : window.location.href = "/"
 
+
 elForm.addEventListener("submit", async (evt) => {
     evt.preventDefault();
     let email = elEmailInput.value;
